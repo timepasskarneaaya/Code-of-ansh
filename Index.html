@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Valentine Day Adventure - Dark Vibe</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Pacifico', cursive;
+    background: linear-gradient(135deg, #1c1c1c, #111111, #0a0a0a);
+    color: #ff7fbf;
+    font-size: 0.95rem;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  main {
+    position: relative;
+    background: #221f2d;
+    border-radius: 18px;
+    border: 3px solid #ff4d94;
+    width: 460px;
+    max-width: 95vw;
+    height: 90vh;
+    padding: 24px 32px;
+    box-shadow: 0 8px 24px rgba(255 77 148 / 0.6);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Pages container - only one visible at a time and fill main */
+  .page {
+    flex: 1 1 auto;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .page.active {
+    display: flex;
+  }
+
+  .emoji-decor {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.8rem;
+    user-select: none;
+    filter: drop-shadow(0 0 3px #ff4d94cc);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    line-height: 1.3;
+    margin: 0 0 22px 0;
+    position: relative;
+    user-select: none;
+    color: #ffaad4;
+    z-index: 1;
+  }
+
+  /* Valentine-themed decorative hearts around heading */
+  h1::before, h1::after {
+    content: "💖";
+    font-size: 1.4rem;
+    position: absolute;
+    top: 0;
+    text-shadow: 0 0 5px #ff4d94;
+  }
+  h1::before {
+    left: -28px;
+    transform: rotate(-25deg);
+  }
+  h1::after {
+    right: -28px;
+    transform: rotate(25deg);
+  }
+
+  /* Main text container with border */
+  .content-box {
+    border: 2px dashed #ff4d94;
+    border-radius: 16px;
+    padding: 20px 24px;
+    background: #311f3f;
+    box-shadow: inset 0 0 14px #ff4d94cc;
+    min-height: 80px;
+    max-height: 130px;
+    overflow-y: auto;
+    margin-bottom: 32px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    color: #ffc6e8;
+    font-weight: 600;
+  }
+
+  /* Buttons container fixed below content */
+  .options {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    z-index: 1;
+  }
+
+  button {
+    background: #ff4d94;
+    border: none;
+    border-radius: 14px;
+    padding: 10px 24px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    color: #fff0f5;
+    box-shadow: 0 4px 14px rgba(255 77 148 / 0.9);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    min-width: 90px;
+    user-select: none;
+    font-weight: 700;
+  }
+
+  button:hover, button:focus {
+    background-color: #ff85b9;
+    outline: none;
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(255 133 185 / 1);
+  }
+
+  button:active {
+    transform: scale(0.94);
+  }
+
+  /* Smaller text for gift items */
+  .gifts p {
+    font-size: 0.85rem;
+    margin: 6px 0;
+    user-select: none;
+  }
+
+  /* Image grid for page 7 */
+  .shadow-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-height: 340px;
+    overflow: hidden;
+  }
+
+  .shadow-gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 6px 12px rgba(255 77 148 / 0.6);
+    user-select: none;
+    filter: drop-shadow(0 0 0.3rem #ff4d94);
+    transition: transform 0.3s ease;
+  }
+
+  .shadow-gallery img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 480px) {
+    main {
+      width: 95vw;
+      height: 88vh;
+      padding: 20px;
+    }
+    .shadow-gallery {
+      grid-template-columns: repeat(2, 1fr);
+      max-height: 280px;
+    }
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- Page 1 -->
+  <section id="page1" class="page active" role="region" aria-label="Page 1">
+    <div class="emoji-decor" aria-hidden="true">🌹💘🌟</div>
+    <h1>Hii! I am very very excited for this day because 💘</h1>
+    <div class="content-box" aria-label="Page 1 content">
+      <p>Every moment feels magical with you around! ✨</p>
+    </div>
+    <div class="options">
+      <button type="button" aria-label="Go to page 2" onclick="goToPage(2)">so 💌</button>
+    </div>
+  </section>
+
+  <!-- Page 2 -->
+  <section id="page2" class="page" role="region" aria-label="Page 2">
+    <div class="emoji-decor" aria-hidden="true">💝🌸💖</div>
+    <h1>Because I want to say that I like you and I want you at any cost! 💕</h1>
+    <div class="content-box" aria-label="Page 2 content">
+      <p>My feelings are true and sincere ❤️</p>
+    </div>
+    <div class="options">
+      <button type="button" aria-label="Go back to page 1" onclick="goToPage(1)">← Back</button>
+      <button type="button" aria-label="Go to page 3" onclick="goToPage(3)">hmm... 😘</button>
+    </div>
+  </section>
+
+  <!-- Page 3 -->
+  <section id="page3" class="page" role="region" aria-label="Page 3">
+    <div class="emoji-decor" aria-hidden="true">❣️❤️‍🔥💞</div>
+    <h1>Can you become my valentine ❣️</h1>
+    <div class="content-box" aria-label="Page 3 content">
+      <p>Caring for my heart and soul. 💓</p>
+    </div>
+    <div class="options" id="page3-options">
+      <button id="no-btn" type="button" aria-label="No I don't like you" onclick="replaceButtons()">No, I don't like you 💔</button>
+      <button type="button" aria-label="Yes I also like" onclick="goToPage(4)">Yes, I also like 🤗</button>
+    </div>
+  </section>
+
+  <!-- Page 4 -->
+  <section id="page4" class="page" role="region" aria-label="Page 4">
+    <div class="emoji-decor" aria-hidden="true">💖💕🎉</div>
+    <h1>Thank you for accepting my proposal! 💖</h1>
+    <div class="content-box" aria-label="Page 4 content">
+      <p>This means the world to me 💞</p>
+    </div>
+    <div class="options">
+      <button type="button" aria-label="Go back to page 3" onclick="goToPage(3)">← Back</button>
+      <button type="button" aria-label="Go to page 5" onclick="goToPage(5)">No, I also want this! 💕</button>
+    </div>
+  </section>
+
+  <!-- Page 5 -->
+  <section id="page5" class="page" role="region" aria-label="Page 5">
+    <div class="emoji-decor" aria-hidden="true">🎁🎀💝</div>
+    <h1>This is your gift! 🎁</h1>
+    <div class="content-box gifts" aria-label="Virtual Gifts">
+      <p>🧸 Teddy Bear</p>
+      <p>🔗 Locket</p>
+      <p>🎀 Love Notes</p>
+    </div>
+    <div class="options">
+      <button type="button" aria-label="Go back to page 4" onclick="goToPage(4)">← Back</button>
+      <button type="button" aria-label="Go to page 6" onclick="goToPage(6)">Thank you! 💝</button>
+    </div>
+  </section>
+
+  <!-- Page 6 -->
+  <section id="page6" class="page" role="region" aria-label="Page 6">
+    <div class="emoji-decor" aria-hidden="true">🎲💞🎉</div>
+    <h1>Let's play a couple game! 🎲</h1>
+    <div class="content-box" aria-label="Page 6 content">
+      <p>Fun & laughter together! 🎉</p>
+    </div>
+    <div class="options">
+      <button type="button" aria-label="Go back to page 5" onclick="goToPage(5)">← Back</button>
+      <button type="button" aria-label="Go to page 7" onclick="goToPage(7)">Awww 💞</button>
+    </div>
+  </section>
+
+  <!-- Page 7 -->
+  <section id="page7" class="page" role="region" aria-label="Page 7">
+    <div class="emoji-decor" aria-hidden="true">💘🌙💖</div>
+    <h1>I LOVE YOU 💘</h1>
+    <div class="content-box" aria-label="Page 7 content">
+      <p>Partners forever in love and shadows. 🌙</p>
+    </div>
+    <div class="shadow-gallery" aria-label="Gallery of couple shadow pictures">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/84592364-efdf-4de0-84f7-c61cbae4aad3.png" alt="Silhouetted couple holding hands under sunset, romantic shadows" />
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cdcc6691-84e1-4355-acfd-b2ef15c26651.png" alt="Shadowy lovers embracing with soft pink and purple glow background" />
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6f84da31-86b8-4678-8b21-f71d17d03e5a.png" alt="Silhouette of couple sitting closely watching stars" />
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/36f43999-e921-42d2-a1e5-1b3800fc9edc.png" alt="Romantic shadow image of couple dancing under moonlight" />
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/22e10369-6fa7-4f85-9960-e6182629273c.png" alt="Shadowed couple sharing a quiet moment under a tree" />
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2cf5f4a3-ea6d-4f3e-81aa-4a892303c77a.png" alt="Silhouetted couple walking hand in hand on beach at dusk" />
+    </div>
+  </section>
+
+</main>
+<script>
+  // Navigation function shows one page container
+  function goToPage(pageNumber) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => page.classList.remove('active'));
+    const target = document.getElementById('page' + pageNumber);
+    if (target) {
+      target.classList.add('active');
+    }
+  }
+  // Swap the two buttons order on page 3 for "No" button toggling position
+  function replaceButtons() {
+    const container = document.getElementById('page3-options');
+    const buttons = Array.from(container.querySelectorAll('button'));
+    buttons.reverse().forEach(btn => container.appendChild(btn));
+  }
+  // Initialize first page active on load
+  goToPage(1);
+</script>
+</body>
+</html>
+
+```
